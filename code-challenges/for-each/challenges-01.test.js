@@ -37,11 +37,10 @@ const addValues = (arr, value) => {
 };
 
 const addNumbers = (num, arr, times, callback) => {
-  arr.forEach(element => {
-      arr.length=times;
-      callback(arr , num);
-  });
-
+  for (let i = 0 ; i<times;i++){
+    callback(arr,num);
+  }
+return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -63,12 +62,14 @@ This function should use forEach to populate your grocery list based on the stor
 ------------------------------------------------------------------------------------------------ */
 
 const createList = (availableItems) => {
-    inventory.forEach(element => {
-        if (inventory[index]===inventory[0] || inventory[index]===inventory[1] || inventory[index]===inventory[3] ){
-            availableItems.push(element);
-        }
-      
-  });
+   let arr = [];
+   availableItems.forEach(element => {
+     if (element.available){
+       arr.push(element.name);
+       
+     }
+   });
+   return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -86,22 +87,20 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 const fizzbuzz = (arr) => {
+  var outPut =[];
   arr.forEach(element => {
-      const outPut =[];
-      if (element%3 == 0 ){
-          outPut.push = 'Fizz';
-      }
-      if (element%5 == 0){
-          outPut.push = 'Buzz';
-      }
-      if (element%5 == 0 && element%3 == 0){
-        outPut.push = 'Fizz Buzz';
-      }
-      else{
+      if (element % 5 == 0 && element % 3 == 0 ){
+        outPut.push('Fizz Buzz');
+      }else if (element % 5 == 0){
+          outPut.push('Buzz');
+      }else if (element % 3 == 0){
+        outPut.push ('Fizz');
+      } else{
           outPut.push(element);
       }
       
-  });
+  })
+  return outPut;
 };
 
 /* ------------------------------------------------------------------------------------------------
