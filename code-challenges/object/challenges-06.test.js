@@ -76,7 +76,9 @@ const templatingWithMustache = () => {
     let mustacheTemplate = $('#template').html();
     let arr = [];
     characters.forEach(element => {
-        arr.push(mustacheTemplate, element)
+      let results = Mustache.render(mustacheTemplate,element);
+      $('#template').append(results);
+        arr.push(results);
     });
   
     return arr;
@@ -132,16 +134,17 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
-  characters.forEach(element => {
-    if (character=== characters.values){
-        return true;
-    }else{
+  for (let i =0 ; i< arr.length; i++){
+    if (arr[i].name===character){
+      if (Object.values(arr[i].children) == []) {
         return false;
+      }else{
+        return true;
+      }
     }
-      
-  });
-
+  }
 };
+  
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 - Stretch Goal
