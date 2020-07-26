@@ -30,19 +30,23 @@ let starWarsPeople = [
 let $ = createSnippetWithJQuery(`
 <main>
   <section id="template">
-    <h2>{{name}}</h2>
-    <h3>{{height}}</h3>
-    <p>{{eye_color}}</p>
+    <h2></h2>
+    <h3></h3>
+    <p></p>
   </section>
 </main>
 `);
 
 const templateWithJQuery = () => {
   // Solution code here...
-  let mustacheTemplate = $('template').html();
-  starWarsPeople.forEach(element => {
-    let newObject = Mustache.render(mustacheTemplate, element);
-    $('main').append(newObject);
+ starWarsPeople.forEach(element =>{
+   let itemCloned = $('#template').clone();
+   itemCloned.removeAttr('id');
+   itemCloned.find('h2').html(element.name);
+   itemCloned.find('h3').html(element.height);
+   itemCloned.find('p').html(element.eye_color);
+   itemCloned.appendTo('main');
+
   });
   
 
@@ -65,9 +69,10 @@ For example, if the input is 'Welcome', the output will be:
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
-  for(let i =1 ; i< result.length ; i++){
-    var trim = result.slice(i,str);
-    result.push(trim);
+  let strLength = str.length;
+  for(let i = 0 ; i < strLength+1;i++){
+    result[i]= str;
+    str= str.slice(1);
   }
   return result;
 };
