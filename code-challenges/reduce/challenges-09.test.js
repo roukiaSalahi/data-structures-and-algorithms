@@ -31,7 +31,7 @@ const createServer = () => {
     const app = express();
 
     // Routes go here
-    app.get('/event',(request,response)=>{
+    app.get('/events',(request,response)=>{
         getCurrentEvents(request,response);
     })
     // Solution code here...
@@ -169,22 +169,27 @@ const currentEvents = {
 
 function getCurrentEvents(request, response) {
     // Solution code here...
+    let result = mapCurrentEvents();
+    response.send(result);
     
 }
 
 
 const mapCurrentEvents = () => {
     // Solution code here...
+    return currentEvents.news.map((element)=>{
+        return new Event (element);
+    })
    
 }
 
 function Event(obj) {
     // Solution code here...
     this.author = obj.author
-    this.categories = obj.categories
-    this.summary = obj.summary
-    this.img_url = obj.img_url
-    this.date = obj.date
+    this.categories = obj.category
+    this.summary = obj.description
+    this.img_url = obj.image
+    this.date = obj.published
     this.title = obj.title
 }
 
